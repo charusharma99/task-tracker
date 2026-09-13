@@ -33,3 +33,21 @@ elif choice == "2":
     add_task(new_task)
 else:
     print("Invalid choice")
+
+def delete_task(task_number):
+    with open("tasks.txt", "r") as file:
+        tasks = file.readlines()
+
+    if task_number < 1 or task_number > len(tasks):
+        print("Invalid task number.")
+        return
+
+    deleted_task = tasks.pop(task_number - 1)
+
+    with open("tasks.txt", "w") as file:
+        file.writelines(tasks)
+
+    print(f"Deleted: {deleted_task.strip()}")
+    print("1. Show tasks")
+    print("2. Add task")
+    print("3. Delete task")
